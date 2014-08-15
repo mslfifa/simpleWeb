@@ -2,6 +2,7 @@
     <wb-module deploy-name="simpleWeb">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="context-root" value="simpleWeb"/>
         <property name="java-output-path" value="/simpleWeb/build/classes"/>
     </wb-module>

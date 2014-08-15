@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ page import="java.util.*" %>    
 <%
 String ctx = request.getContextPath();
-List soruceList = (List)request.getAttribute("soruceList");
+List sourceList = (List)request.getAttribute("sourceList");
 List targetList = (List)request.getAttribute("targetList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,6 +25,28 @@ List targetList = (List)request.getAttribute("targetList");
 </script>
 </head>
 <body>
+
+
+<c:set var="salary" scope="request" value="${2000*2}"/>
+<c:choose>
+    <c:when test="${salary <= 0}">
+       Salary is very low to survive.
+    </c:when>
+    <c:when test="${salary > 1000}">
+        Salary is very good.
+    </c:when>
+    <c:otherwise>
+        No comment sir...
+    </c:otherwise>
+</c:choose>
+
+<c:if test="${salary > 2000}">
+   <p>My salary is: <c:out value="${salary}"/><p>
+</c:if>
+
+
+
+
 <div>
 <table border="1" bordercolor="black" style="width:400px;float:left">
 	<tr>
@@ -32,22 +55,13 @@ List targetList = (List)request.getAttribute("targetList");
 		<td>VALID</td>
 		<td>CREATE_TIME</td>
 	</tr>
-	<%
-	if(soruceList!=null){
-		for(int i=0;i<soruceList.size();i++){ 
-			Object[] rowArr = (Object[])soruceList.get(i);
-			
-	%>
+	<c:forEach items="${sourceList}" var="rows" >
 	<tr>
-		<td><%=rowArr[0] %></td>
-		<td><%=rowArr[1] %></td>
-		<td><%=rowArr[2] %></td>
-		<td><%=rowArr[3] %></td>
+	  <c:forEach items="${rows }" var="col" >
+		<td><c:out value="${col}" /></td>
+	  </c:forEach>
 	</tr>
-	<% 
-		}
-	}
-	%>
+	</c:forEach>
 </table>
 
 <table border="1" bordercolor="black" style="width:400px;float:right">
@@ -58,22 +72,13 @@ List targetList = (List)request.getAttribute("targetList");
 		<td>CREATE_TIME</td>
 	</tr>
 	
-	<%
-	if(targetList!=null){
-		for(int i=0;i<targetList.size();i++){ 
-			Object[] rowArr = (Object[])targetList.get(i);
-			
-	%>
+	<c:forEach items="${targetList}" var="rows1" >
 	<tr>
-		<td><%=rowArr[0] %></td>
-		<td><%=rowArr[1] %></td>
-		<td><%=rowArr[2] %></td>
-		<td><%=rowArr[3] %></td>
+	  <c:forEach items="${rows1 }" var="col1" >
+		<td><c:out value="${col1}" /></td>
+	  </c:forEach>
 	</tr>
-	<% 
-		}
-	}
-	%>
+	</c:forEach>
 </table>
 </div>
 <br/>

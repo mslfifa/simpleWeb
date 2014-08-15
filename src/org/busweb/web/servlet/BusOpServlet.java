@@ -152,9 +152,9 @@ public class BusOpServlet extends HttpServlet {
 							" FROM `test_target`       						";
 		
 		try {
-			List<Object[]> soruceList = dao.queryListByPara(soruceSql);
+			List<Object[]> sourceList = dao.queryListByPara(soruceSql);
 			List<Object[]> targetList = dao.queryListByPara(targetSql);
-			request.setAttribute("soruceList", soruceList);
+			request.setAttribute("sourceList", sourceList);
 			request.setAttribute("targetList", targetList);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (Exception e) {
